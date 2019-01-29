@@ -12,7 +12,7 @@ export const SearchTop = styled.div`
 
     display: grid;
     grid-template-rows: 15vh 5vh 10vh;
-    grid-template-areas: 
+    grid-template-areas:
         'h'
         's'
         'f';
@@ -24,12 +24,12 @@ export const SearchTop = styled.div`
 
 
 export const SearchHeader = styled.h1`
-    grid-area: h;   
+    grid-area: h;
 
     display: flex;
     align-self: center;
     justify-self: center;
-    
+
     letter-spacing: 1.2em;
     color: #fff;
     padding-left: 1em;
@@ -68,7 +68,7 @@ export const Form = styled.form`
 `;
 
 export const SearchInput = styled.input`
-    padding: 1.3em 14em;
+    padding: 1.3em 10em;
     text-align: center;
     border-radius: 2em;
     border: 1px solid #6f94fb;
@@ -81,22 +81,22 @@ export const SearchBottom = styled.div`
     display: grid;
     grid-template-columns: 0.5fr 2fr 0.5fr ;
     grid-template-rows: 1fr 2fr;
-    grid-template-areas: 
+    grid-template-areas:
         '. . .'
-        'r r r'; 
+        'r r r';
 
     background: linear-gradient(to right,#343748, #2e3240);
     margin-top: 3em;
 `;
-    
+
 
 export const SearchResults = styled.div`
-    grid-area: r;   
+    grid-area: r;
 
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: center; 
+    justify-content: center;
 
     background: linear-gradient(to right,#343748, #2e3240);
 `;
@@ -105,9 +105,9 @@ export const Restaurant = styled.div`
     display: grid;
     grid-template-columns: 3fr 2fr;
     grid-template-rows: 0.5fr 1fr 1fr;
-    grid-template-areas: 
-        'descName pic' 
-        'descDet pic' 
+    grid-template-areas:
+        'descName pic'
+        'descDet pic'
         'callBtn pic';
 
     border-radius: 1em;
@@ -115,7 +115,7 @@ export const Restaurant = styled.div`
     margin: 2em auto;
     padding: 2em 3em;
     width: 54vw;
-   
+
     background: linear-gradient(to right,#606481,#383a4f);
 
     @media(max-width: 771px) {
@@ -130,15 +130,15 @@ export const Restaurant = styled.div`
 `;
 
 export const RestaurantName = styled.h2`
-    grid-area: descName;  
+    grid-area: descName;
 
-    margin: 0; 
+    margin: 0;
     color: #fff;
 
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: center; 
+    justify-content: center;
 `;
 
 export const RestaurantDesc = styled.p`
@@ -147,11 +147,11 @@ export const RestaurantDesc = styled.p`
 `;
 
 export const IconStyleDesc = styled.span`
-    padding: 0px 0.5em; 
+    padding: 0px 0.5em;
     color: #fff;
 
     @media(max-width: 771px) {
-        padding: 0; 
+        padding: 0;
     }
 `;
 
@@ -161,12 +161,12 @@ export const IconStyle = styled.span`
 `;
 
 export const ReserveTable = styled.span`
-    grid-area: callBtn; 
+    grid-area: callBtn;
 
     display: flex;
     align-self: center;
 
-    padding-bottom: 1em;    
+    padding-bottom: 1em;
 
     @media(max-width: 771px) {
         align-self: flex-start;
@@ -175,9 +175,9 @@ export const ReserveTable = styled.span`
 
 
 export const RestaurantPic = styled.div`
-    grid-area: pic; 
+    grid-area: pic;
 
     background-image: url('${props => props.picture}');
     background-repeat: no-repeat, repeat;
-    
+
 `;
