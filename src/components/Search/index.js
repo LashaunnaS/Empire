@@ -120,7 +120,7 @@ class Search extends Component {
             ) : (
               <span style={noDataStyle}>
                 <h1>
-                  Sorry, dosen't look like you have the right city. Please enter
+                  Sorry, doesn't look like you have the right city. Please enter
                   a valid location in the search field above!
                 </h1>
               </span>
