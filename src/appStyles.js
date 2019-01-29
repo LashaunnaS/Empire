@@ -12,6 +12,7 @@ export const AppBg = styled.div`
 
     @media(max-width: 771px) {
         grid-template-rows: 27vh 70vh;
+        width: 100%;
     }
 
 `;
