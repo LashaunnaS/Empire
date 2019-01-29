@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { SearchTop, Form, SearchInput, SearchHeader, SearchBottom, SearchResults, SearchSlogan, Restaurant, RestaurantName, RestaurantDesc, ReserveTable, RestaurantPic, IconStyle, IconStyleDesc } from './searchStyle';
 
-const API = 'http://opentable.herokuapp.com/api/restaurants?city=';
+const API = 'https://opentable.herokuapp.com/api/restaurants?city=';
 
 class Search extends Component {
     state = {
