@@ -15,7 +15,7 @@ export const SearchTop = styled.div`
     grid-template-areas:
         'h'
         's'
-        'f';
+        'n';
 
     @media(max-width: 771px) {
         grid-template-rows: 15vh 5vh 7vh;
@@ -57,21 +57,43 @@ export const SearchSlogan = styled.h2`
     }
 `;
 
-export const Form = styled.form`
-    grid-area: f;
+export const Navigation = styled.div`
+    grid-area: n;
 
     display: flex;
     align-self: flex-end;
     justify-self: center;
 
+    width: 28vw;
+    height: 6vh;
     margin-bottom: -1.5em;
+
+    border-radius: 2em;
+    border: 1px solid #6f94fb;
+    background-color: #fff;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        '. navSec2 .';
+`;
+
+
+export const Form = styled.form`
+    grid-area: navSec2;
+
+    align-self: center;
+
+    border: none;
 `;
 
 export const SearchInput = styled.input`
-    padding: 1.3em 10em;
+    
     text-align: center;
-    border-radius: 2em;
-    border: 1px solid #6f94fb;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #2f3252;
+    border: none;
 `;
 
 // SEARCH BOTTOM

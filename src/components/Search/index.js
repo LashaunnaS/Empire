@@ -14,11 +14,12 @@ import {
   ReserveTable,
   RestaurantPic,
   IconStyle,
-  IconStyleDesc
+  IconStyleDesc,
+  Navigation
 } from "./searchStyle";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faCircle, faMobileAlt, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faCircle, faMobileAlt, faGlobeAmericas, faMapMarkerAlt, faConciergeBell } from '@fortawesome/free-solid-svg-icons'
 
 const API = "https://opentable.herokuapp.com/api/restaurants?city=";
 
@@ -116,14 +117,29 @@ class Search extends Component {
         <SearchTop>
           <SearchHeader>EMPIRE</SearchHeader>
           <SearchSlogan>BOOK YOUR NEXT RESERVATION TODAY!</SearchSlogan>
-          <Form onSubmit={e => e.preventDefault()}>
-            <SearchInput
-              type="text"
-              placeholder="Location..."
-              value={this.state.cityQuery}
-              onChange={this.handleSearch}
-            />
-          </Form>
+          <Navigation>
+            <IconStyle style={{ padding: '6px 0em 6px 1em' }}>
+              <FontAwesomeIcon
+                icon={faMapMarkerAlt}
+                size="2x"
+              />
+            </IconStyle>
+            <Form onSubmit={e => e.preventDefault()}>
+              <SearchInput
+                type="text"
+                placeholder="Location..."
+                value={this.state.cityQuery}
+                onChange={this.handleSearch}
+              />
+            </Form>
+            <IconStyle style={{ display: 'flex', alignSelf: 'center' }}>
+              <FontAwesomeIcon
+                icon={faConciergeBell}
+                size="lg"
+              />
+            </IconStyle>
+          </Navigation>
+
         </SearchTop>
         <SearchBottom>
           <SearchResults>
