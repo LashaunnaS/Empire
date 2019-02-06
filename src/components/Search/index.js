@@ -17,6 +17,9 @@ import {
   IconStyleDesc
 } from "./searchStyle";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faCircle, faMobileAlt, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
+
 const API = "https://opentable.herokuapp.com/api/restaurants?city=";
 
 const noDataStyle = {
@@ -28,7 +31,8 @@ const noDataStyle = {
 class Search extends Component {
   state = {
     cityQuery: "Toronto",
-    restaurantData: []
+    restaurantData: [],
+    favs: []
   };
 
   async componentDidMount() {
@@ -65,6 +69,47 @@ class Search extends Component {
       });
   };
 
+
+  favourites = (id) => {
+    const { favs } = this.state;
+    favs.includes(id) ? this.removeFav(id) : this.addFav(id);
+  }
+
+  addFav = (id) => {
+    const { favs } = this.state;
+    if (favs.includes(id)) {
+      return;
+    } else {
+      this.setState(prevState => ({
+        favs: [...prevState.favs, id]
+      }))
+    }
+  }
+
+  removeFav = (id) => {
+    const { favs } = this.state;
+
+    let newFavs = favs.filter(x => x !== id);
+
+
+    this.setState(() => ({
+      favs: [...newFavs]
+    }))
+  }
+
+  savedRestaurant = (id) => (
+    this.state.favs.includes(id) ?
+      (<FontAwesomeIcon
+        icon={faCheckCircle}
+        size="lg"
+      />)
+      :
+      (<FontAwesomeIcon
+        icon={faCircle}
+        size="lg"
+      />)
+  );
+
   render() {
     return (
       <Fragment>
@@ -92,8 +137,8 @@ class Search extends Component {
                         {food.price}/5 star rating
                       </span>
                       •
-                      <IconStyle>
-                        <i class="far fa-star fa-lg" />
+                      <IconStyle onClick={() => this.favourites(food.id)}>
+                        {this.savedRestaurant(food.id)}
                       </IconStyle>
                       <br />
                       <br />
@@ -104,12 +149,18 @@ class Search extends Component {
                     <ReserveTable>
                       <a href={`tel:${food.phone}`}>
                         <IconStyle>
-                          <i class="fas fa-mobile-alt fa-lg" />
+                          <FontAwesomeIcon
+                            icon={faMobileAlt}
+                            size="lg"
+                          />
                         </IconStyle>
                       </a>
                       <a href={`${food.reserve_url}`}>
                         <IconStyle>
-                          <i class="fas fa-globe-americas fa-lg" />
+                          <FontAwesomeIcon
+                            icon={faGlobeAmericas}
+                            size="lg"
+                          />
                         </IconStyle>
                       </a>
                     </ReserveTable>
@@ -118,13 +169,13 @@ class Search extends Component {
                 );
               })
             ) : (
-              <span style={noDataStyle}>
-                <h1>
-                  Sorry, doesn't look like you have the right city. Please enter
-                  a valid location in the search field above!
+                <span style={noDataStyle}>
+                  <h1>
+                    Sorry, doesn't look like you have the right city. Please enter
+                    a valid location in the search field above!
                 </h1>
-              </span>
-            )}
+                </span>
+              )}
           </SearchResults>
         </SearchBottom>
       </Fragment>
