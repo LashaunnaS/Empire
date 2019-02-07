@@ -1,100 +1,5 @@
 import styled from 'styled-components';
 
-//SEARCH TOP
-export const SearchTop = styled.div`
-    grid-area: top;
-
-    background: linear-gradient(160deg,#719dfe,#5c49e0, #5c49e0);
-    box-shadow: 0px 0.1em 1em black;
-
-    border-bottom-left-radius: 3em;
-    border-bottom-right-radius: 3em;
-
-    display: grid;
-    grid-template-rows: 15vh 5vh 10vh;
-    grid-template-areas:
-        'h'
-        's'
-        'n';
-
-    @media(max-width: 771px) {
-        grid-template-rows: 15vh 5vh 7vh;
-    }
-`;
-
-
-export const SearchHeader = styled.h1`
-    grid-area: h;
-
-    display: flex;
-    align-self: center;
-    justify-self: center;
-
-    letter-spacing: 1.2em;
-    color: #fff;
-    padding-left: 1em;
-    font-size: 8vw;
-
-    @media screen and (min-width: 1200px) {
-     font-size: 6em;
-     letter-spacing: 1em;
-    }
-`;
-
-export const SearchSlogan = styled.h2`
-    grid-area: s;
-
-    display: flex;
-    align-self: center;
-    justify-self: center;
-
-    color: #c7c9d4;
-    text-shadow: 0px 1px 2px #000;
-
-    @media screen and (max-width: 771px) {
-        text-align: center;
-        font-size: 4vw;
-    }
-`;
-
-export const Navigation = styled.div`
-    grid-area: n;
-
-    display: flex;
-    align-self: flex-end;
-    justify-self: center;
-
-    width: 28vw;
-    height: 6vh;
-    margin-bottom: -1.5em;
-
-    border-radius: 2em;
-    border: 1px solid #6f94fb;
-    background-color: #fff;
-    
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-        '. navSec2 .';
-`;
-
-
-export const Form = styled.form`
-    grid-area: navSec2;
-
-    align-self: center;
-
-    border: none;
-`;
-
-export const SearchInput = styled.input`
-    
-    text-align: center;
-    font-size: 1.6em;
-    font-weight: 600;
-    color: #2f3252;
-    border: none;
-`;
 
 // SEARCH BOTTOM
 export const SearchBottom = styled.div`
@@ -105,7 +10,7 @@ export const SearchBottom = styled.div`
     grid-template-rows: 1fr 2fr;
     grid-template-areas:
         '. . .'
-        'r r r';
+        'results results results';
 
     background: linear-gradient(to right,#343748, #2e3240);
     margin-top: 3em;
@@ -113,7 +18,7 @@ export const SearchBottom = styled.div`
 
 
 export const SearchResults = styled.div`
-    grid-area: r;
+    grid-area: results;
 
     display: flex;
     flex-direction: column;
