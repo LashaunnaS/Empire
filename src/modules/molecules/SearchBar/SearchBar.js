@@ -13,7 +13,7 @@ const SearchBar = (props) => (
     <Link to="/" style={{ paddingTop: '5px' }}>
       <IconSymbol style={{ padding: '6px 0em 6px 1em' }} icon={faMapMarkerAlt} size={`2x`} />
     </Link>
-    <SearchForm props={props} placeHolder={props.placeHolder} />
+    <SearchForm handleSearch={props.handleSearch} cityQuery={props.cityQuery} placeHolder={props.placeHolder} />
 
     <Link to="/myList" style={{ padding: '14px 0em 0px 1em' }} >
       <IconSymbol style={{ display: 'flex', alignSelf: 'center' }} icon={faConciergeBell} size={`lg`} />

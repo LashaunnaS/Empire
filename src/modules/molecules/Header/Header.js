@@ -8,10 +8,11 @@ import {
 import SearchBar from '../SearchBar/SearchBar.js'
 
 const Header = (props) => (
+
   <SearchTop>
     <SearchHeader>EMPIRE</SearchHeader>
     <SearchSlogan>BOOK YOUR NEXT RESERVATION TODAY!</SearchSlogan>
-    <SearchBar props={props} placeHolder={props.placeHolder} />
+    <SearchBar handleSearch={props.handleSearch} cityQuery={props.cityQuery} placeHolder={props.placeHolder} />
   </SearchTop>
 )
 
