@@ -1,10 +1,18 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
+import Header from '../../modules/molecules/Header/Header.js';
 
-class MyList extends React.Component {
+
+class MyList extends Component {
+
     render() {
-        console.log('her')
         return (
-            <p>meeeeee</p>
+            <Fragment>
+                <Header
+                    placeHolder={`Revisit...`}
+                />
+
+            </Fragment>
+
         )
     }
 }

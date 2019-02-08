@@ -1,18 +1,18 @@
 import React from 'react';
-
+import IconSymbol from '../../atoms/IconSymbol/IconSymbol.js'
 import {
     SearchBottom,
     SearchResults,
     Restaurant,
     RestaurantName,
-    RestaurantDesc,
+    RestaurantDetails,
     ReserveTable,
     RestaurantPic,
-    IconStyle,
-    IconStyleDesc,
+    ConnectText,
+    ConnectLink,
+    RestaurantDesc,
 } from "./resultsStyle";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMobileAlt, faGlobeAmericas } from '@fortawesome/free-solid-svg-icons'
 
 const noDataStyle = {
@@ -29,40 +29,38 @@ const Reasults = (props) => (
                     return (
                         <Restaurant key={food.id}>
                             <RestaurantName>{food.name}</RestaurantName>
-                            <RestaurantDesc>
+                            <RestaurantDetails>
                                 <span style={{ padding: "0px 0.5em", color: "#c7cad3" }}>
                                     {food.price}/5 star rating
                                 </span>
                                 •
-
                                 <span onClick={() => props.favourites(food.id)}>
                                     {props.savedRestaurant(food.id)}
                                 </span>
-
                                 <br />
                                 <br />
-                                <IconStyleDesc>
+                                <RestaurantDesc>
                                     {food.address}, {food.city}, {food.country}
-                                </IconStyleDesc>
-                            </RestaurantDesc>
+                                </RestaurantDesc>
+                            </RestaurantDetails>
+
                             <ReserveTable>
-                                <a href={`tel:${food.phone}`}>
-                                    <IconStyle>
-                                        <FontAwesomeIcon
-                                            icon={faMobileAlt}
-                                            size="lg"
-                                        />
-                                    </IconStyle>
-                                </a>
-                                <a href={`${food.reserve_url}`}>
-                                    <IconStyle>
-                                        <FontAwesomeIcon
-                                            icon={faGlobeAmericas}
-                                            size="lg"
-                                        />
-                                    </IconStyle>
-                                </a>
+                                <ConnectText>Phone:</ConnectText>
+                                <ConnectLink href={`tel:${food.phone}`}>
+                                    <IconSymbol
+                                        style={{ marginRight: '2em' }}
+                                        icon={faMobileAlt} size={`lg`} />
+                                </ConnectLink>
+
+                                <ConnectText> Website:</ConnectText>
+                                <ConnectLink href={`${food.reserve_url}`}>
+                                    <IconSymbol
+                                        icon={faGlobeAmericas}
+                                        size={`lg`}
+                                    />
+                                </ConnectLink>
                             </ReserveTable>
+
                             <RestaurantPic picture={food.image_url} />
                         </Restaurant>
                     );

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-
-// SEARCH BOTTOM
 export const SearchBottom = styled.div`
     grid-area: bottom;
 
@@ -68,23 +66,18 @@ export const RestaurantName = styled.h2`
     justify-content: center;
 `;
 
-export const RestaurantDesc = styled.p`
+export const RestaurantDetails = styled.p`
     grid-area: descDet;
 
 `;
 
-export const IconStyleDesc = styled.span`
+export const RestaurantDesc = styled.span`
     padding: 0px 0.5em;
     color: #fff;
 
     @media(max-width: 771px) {
         padding: 0;
     }
-`;
-
-export const IconStyle = styled.span`
-    padding: 0px 0.5em;
-    color: #6c89f7;
 `;
 
 export const ReserveTable = styled.span`
@@ -100,6 +93,21 @@ export const ReserveTable = styled.span`
     }
 `;
 
+
+export const ConnectText = styled.h3`
+    color: #fff;
+
+    @media(max-width: 500px) {
+        display: none;
+    }
+`;
+
+
+export const ConnectLink = styled.a`
+    padding-left: 0.5em;
+    display: flex;
+    align-self: center; 
+`;
 
 export const RestaurantPic = styled.div`
     grid-area: pic;

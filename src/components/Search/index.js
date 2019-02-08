@@ -94,6 +94,7 @@ class Search extends Component {
         <Header
           cityQuery={this.state.cityQuery}
           handleSearch={this.handleSearch}
+          placeHolder={`Location ...`}
         />
         <Results
           restaurantData={this.state.restaurantData}
