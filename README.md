@@ -1,3 +1,5 @@
+A responsive development build of Kady Jesko's Ce Soir restaurant design on Behance. You can find the design inspo here... https://www.behance.net/gallery/19198309/Ce-Soir-Restaurant.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
