@@ -27,6 +27,7 @@ export const SearchInput = styled.input`
 
     @media screen and (max-width: 700px) {
         width: 28vw;
+        height: 4vh;
     }
     
 `;
