@@ -21,7 +21,7 @@ const noDataStyle = {
     textAlign: "center"
 };
 
-const Reasults = (props) => (
+const Results = (props) => (
     <SearchBottom>
         <SearchResults>
             {props.restaurantData.length > 0 ? (
@@ -34,7 +34,7 @@ const Reasults = (props) => (
                                     {food.price}/5 star rating
                                 </span>
                                 •
-                                <span onClick={() => props.favourites(food.id)}>
+                                <span onClick={() => props.favourites(food)}>
                                     {props.savedRestaurant(food.id)}
                                 </span>
                                 <br />
@@ -70,11 +70,11 @@ const Reasults = (props) => (
                         <h1>
                             Sorry, doesn't look like you have the right city. Please enter
                             a valid location in the search field above!
-                </h1>
+                        </h1>
                     </span>
                 )}
         </SearchResults>
     </SearchBottom>
 );
 
-export default Reasults;
+export default Results;

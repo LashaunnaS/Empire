@@ -12,7 +12,11 @@ const Header = (props) => (
   <SearchTop>
     <SearchHeader>EMPIRE</SearchHeader>
     <SearchSlogan>BOOK YOUR NEXT RESERVATION TODAY!</SearchSlogan>
-    <SearchBar handleSearch={props.handleSearch} cityQuery={props.cityQuery} placeHolder={props.placeHolder} />
+    <SearchBar
+     handleSearch={props.handleSearch} 
+     cityQuery={props.cityQuery} 
+     placeHolder={props.placeHolder} 
+    />
   </SearchTop>
 )
 
