@@ -7,19 +7,21 @@ import IconSymbol from './modules/atoms/IconSymbol/IconSymbol.js';
 import { faCheckCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 
-const API1 = "https://opentable.herokuapp.com/api/restaurants?city=";
+const API = "https://opentable.herokuapp.com/api/restaurants?city=";
 
 class App extends Component {
   state = {
     cityQuery: "Toronto",
     restaurantData: [],
     favs: [],
-    favRestaurantData: []
+    favRestaurantData: [],
+    searchedFavResturantData: [],
+    filterFavName: ""
   };
 
   // Grab home page restaurant data
   componentDidMount = async () => {
-    let data = await axios.get(`${API1}${this.state.cityQuery}`)
+    let data = await axios.get(`${API}${this.state.cityQuery}`)
     this.setState({ restaurantData: data.data.restaurants });
   }
 
@@ -27,7 +29,7 @@ class App extends Component {
   handleSearch = event => {
     this.setState({ cityQuery: event.target.value });
     axios
-      .get(`${API1}${this.state.cityQuery}`)
+      .get(`${API}${this.state.cityQuery}`)
       .then(data => {
         this.setState({
           restaurantData: data.data.restaurants
@@ -45,7 +47,6 @@ class App extends Component {
   }
 
   // If in favs list return : add
-
   addFav = (restaurant) => {
     const { favs } = this.state;
 
@@ -58,6 +59,7 @@ class App extends Component {
       this.setState(prevState => ({
         favRestaurantData: [...prevState.favRestaurantData, restaurant]
       }))
+
     }
   }
 
@@ -71,8 +73,6 @@ class App extends Component {
     this.setState({ favs: [...newFavs] });
 
     this.setState({ favRestaurantData: [...newFavsData] })
-    // console.log(newFavsData)
-
   }
 
   // render check icon if the restaurant is favourited
@@ -93,9 +93,21 @@ class App extends Component {
       )
   );
 
+  searchMyFavs = event => {
+    const { favRestaurantData, filterFavName } = this.state;
+
+    this.setState({ filterFavName: event.target.value })
+
+    let y = favRestaurantData.filter(favDataFiltter => favDataFiltter.name.toLowerCase().indexOf(filterFavName.toLowerCase()) > -1)
+
+    this.setState({ searchedFavResturantData: y })
+    // console.log(y)
+  }
+
+
   render() {
-    const { cityQuery, restaurantData, favRestaurantData } = this.state;
-    const { handleSearch, favourites, savedRestaurant } = this;
+    const { cityQuery, restaurantData, favRestaurantData, filterFavName, searchedFavResturantData } = this.state;
+    const { handleSearch, favourites, savedRestaurant, searchMyFavs } = this;
 
 
     return (
@@ -118,7 +130,8 @@ class App extends Component {
             <Route exact path="/myList"
               render={() =>
                 <MyList
-                  favRestaurantData={favRestaurantData}
+                  searchMyFavs={searchMyFavs}
+                  favRestaurantData={filterFavName === '' ? favRestaurantData : searchedFavResturantData}
                   savedRestaurant={savedRestaurant}
                   favourites={favourites}
                 />

@@ -8,6 +8,7 @@ const MyList = (props) => {
         <Fragment>
             <Header
                 placeHolder={`Revisit...`}
+                handleSearch={props.searchMyFavs}
             />
             <Results
                 restaurantData={props.favRestaurantData}
