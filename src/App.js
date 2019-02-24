@@ -19,25 +19,22 @@ class App extends Component {
     filterFavName: ""
   };
 
-  // Grab home page restaurant data
+  // grab default city search results
   componentDidMount = async () => {
-    let data = await axios.get(`${API}${this.state.cityQuery}`)
+    const { cityQuery } = this.state
+    let data = await axios.get(`${API}${cityQuery}`)
     this.setState({ restaurantData: data.data.restaurants });
   }
 
   // search for a restaurant based on location
-  handleSearch = event => {
+  handleSearch = async event => {
     this.setState({ cityQuery: event.target.value });
-    axios
-      .get(`${API}${this.state.cityQuery}`)
-      .then(data => {
-        this.setState({
-          restaurantData: data.data.restaurants
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+    let data = await axios.get(`${API}${this.state.cityQuery}`);
+
+    this.setState({
+      restaurantData: data.data.restaurants
+    });
   };
 
   // check if restaurant is in the favs list to be added : remove it
@@ -48,19 +45,18 @@ class App extends Component {
 
   // If in favs list return : add
   addFav = (restaurant) => {
-    const { favs } = this.state;
+    const { favs, favRestaurantData } = this.state;
 
     if (favs.includes(restaurant.id)) {
       return;
     } else {
       this.setState(prevState => ({
-        favs: [...prevState.favs, restaurant.id]
-      }))
-      this.setState(prevState => ({
+        favs: [...prevState.favs, restaurant.id],
         favRestaurantData: [...prevState.favRestaurantData, restaurant]
       }))
-
     }
+
+    
   }
 
   // remove fav from list
@@ -70,77 +66,79 @@ class App extends Component {
     let newFavs = favs.filter(x => x !== restaurant.id);
     let newFavsData = favRestaurantData.filter(x => x.id !== restaurant.id);
 
-    this.setState({ favs: [...newFavs] });
+    this.setState({
+      favs: [...newFavs],
+      favRestaurantData: [...newFavsData]
+    });
 
-    this.setState({ favRestaurantData: [...newFavsData] })
   }
 
-  // render check icon if the restaurant is favourited
-  savedRestaurant = (id) => (
-    this.state.favs.includes(id) ?
-      (
-        <IconSymbol style={{ marginLeft: '0.5em' }}
-          icon={faCheckCircle}
-          size={`lg`}
-        />
+// render check icon if the restaurant is favourited
+savedRestaurant = (id) => (
+  this.state.favs.includes(id) ?
+    (
+      <IconSymbol style={{ marginLeft: '0.5em' }}
+        icon={faCheckCircle}
+        size={`lg`}
+      />  
       )
       :
       (
-        <IconSymbol style={{ marginLeft: '0.5em' }}
-          icon={faPlusCircle}
-          size={`lg`}
-        />
+  <IconSymbol style={{ marginLeft: '0.5em' }}
+    icon={faPlusCircle}
+    size={`lg`}
+  />  
       )
   );
 
   searchMyFavs = event => {
-    const { favRestaurantData, filterFavName } = this.state;
-
-    this.setState({ filterFavName: event.target.value })
-
+  const { favRestaurantData, filterFavName } = this.state;
+  
     let y = favRestaurantData.filter(favDataFiltter => favDataFiltter.name.toLowerCase().indexOf(filterFavName.toLowerCase()) > -1)
+  
+    this.setState({
+    searchedFavResturantData: y,
+    filterFavName: event.target.value
+  })
 
-    this.setState({ searchedFavResturantData: y })
-    // console.log(y)
   }
 
 
   render() {
-    const { cityQuery, restaurantData, favRestaurantData, filterFavName, searchedFavResturantData } = this.state;
-    const { handleSearch, favourites, savedRestaurant, searchMyFavs } = this;
-
-
+  const { cityQuery, restaurantData, favRestaurantData, filterFavName, searchedFavResturantData } = this.state;
+  const { handleSearch, favourites, savedRestaurant, searchMyFavs } = this;
+  
     return (
-      <Router>
-        <AppBg>
-          <Switch>
-            <Route exact path="/"
-              render={() =>
-                <Search
-                  city={cityQuery}
-                  handleSearch={handleSearch}
-
+    <Router>
+      <AppBg>
+        <Switch>
+          <Route exact path="/"
+            render={() =>
+              <Search
+                city={cityQuery}
+                handleSearch={handleSearch}
+                
                   savedRestaurant={savedRestaurant}
-                  restaurantData={restaurantData}
-                  favourites={favourites}
-                />
+                restaurantData={restaurantData}
+                favourites={favourites}
+              />
               }
-            />
-
+        />
+        
             <Route exact path="/myList"
               render={() =>
-                <MyList
-                  searchMyFavs={searchMyFavs}
-                  favRestaurantData={filterFavName === '' ? favRestaurantData : searchedFavResturantData}
-                  savedRestaurant={savedRestaurant}
-                  favourites={favourites}
-                />
+              <MyList
+                searchMyFavs={searchMyFavs}
+                favRestaurantData={filterFavName === '' ? favRestaurantData : searchedFavResturantData}
+                savedRestaurant={savedRestaurant}
+                favourites={favourites}
+              />
               }
-            />
+        />
           </Switch>
         </AppBg>
-      </Router>
-    );
+      </Router> 
+    ); 
   }
 }
 
